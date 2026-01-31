@@ -16,9 +16,11 @@ import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
 import ChatIcon from '@mui/icons-material/Chat'
 import Badge from '@mui/material/Badge';
 import SendIcon from '@mui/icons-material/Send'
+import servers from "../environment";
 
 const connections = {};
-const server_url = "http://localhost:8000";
+// const server_url = "http://localhost:8000";
+const server_url=servers;
 const peerConfigConnections = {
     iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
 };

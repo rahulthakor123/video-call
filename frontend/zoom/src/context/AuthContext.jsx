@@ -1,6 +1,7 @@
 // AuthContext.js
 import React, { createContext, useState ,useContext} from 'react';
 import axios from 'axios';
+import servers from '../environment';
 
 
 // Create the Auth context
@@ -10,7 +11,8 @@ export const useAuth = () => useContext(AuthContext);
 
 // Create axios client
 const client = axios.create({
-  baseURL: "http://localhost:8000",
+  // baseURL: "http://localhost:8000",
+  baseURL:`${servers}`
 });
 
 const AuthProvider = ({ children }) => {
