@@ -14,13 +14,16 @@ export default function LandingPage() {
                 </div>
                 <div className='navlist'>
                     <p onClick={() => {
-                        router("/aljk23")
+                        localStorage.setItem("isGuest", "true");
+                        router("/home")
                     }}>Join as Guest</p>
                     <p onClick={() => {
+                         localStorage.removeItem("isGuest");
                         router("/auth")
 
                     }}>Register</p>
                     <div onClick={() => {
+                         localStorage.removeItem("isGuest");
                         router("/auth")
 
                     }} role='button'>

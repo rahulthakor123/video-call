@@ -3,8 +3,6 @@ import { useAuth } from "../context/AuthContext";
 import { VideoMeetPage } from './VideoMeetPage';
 import { useNavigate } from 'react-router-dom';
 
-
-
 import {
   Container,
   TextField,
@@ -42,17 +40,20 @@ const CredentialsSignInPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+
     setError('');
     setMessage('');
     setOpen(false);
-
-
 
     const payload = {
       Username: username,
       Password: password,
       Name: name,
     };
+
+
+
 
   try {
     if (formState === 0) {
@@ -68,7 +69,7 @@ const CredentialsSignInPage = () => {
       await handleRegister(payload);
       setMessage('Registered successfully!');
       setOpen(true);
-      navigate("/home"); 
+      navigate("/verify"); 
     }
   } catch (err) {
     console.log(err);
@@ -128,7 +129,7 @@ const CredentialsSignInPage = () => {
 
           <TextField
             fullWidth
-            label="Username"
+            label="Email"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             margin="normal"
@@ -144,6 +145,14 @@ const CredentialsSignInPage = () => {
             margin="normal"
             required
           />
+
+              <Button
+              variant="text"
+               onClick={() => navigate("/forgot-password")}
+                 >
+               Forgot Password?
+                </Button>
+
           <p style={{ color: red }}>{error}</p>
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
             {formState === 0 ? 'Login In' : 'Register'}

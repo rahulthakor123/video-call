@@ -10,8 +10,7 @@ const meetingSchema = new mongoose.Schema({
   },
   Meetingcode:{
         type:String,
-        required:true,
-        unique:true   //meeting codes are unique
+        required:true  //meeting codes are unique
   },
   Date:{
         type:Date,

@@ -1,15 +1,20 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+
+
+/* Landing Page */
+
 .landingPageContainer {
   width: 100vw;
   height: 100vh;
- background: url("/background.png.png");
+  background: url("/background.png.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   color: white;
 }
 
@@ -19,7 +24,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .landingPageContainer nav h2 {
@@ -31,22 +35,22 @@
   display: flex;
   gap: 1.6rem;
   cursor: pointer;
-
+  align-items: center;
 }
 
 .landingMainContainer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-inline: 3rem;
   height: 80vh;
-  align-items: center;
 }
 
-.landingMainContainer>div:nth-child(1) {
+.landingMainContainer > div:nth-child(1) {
   font-size: 2.2rem;
 }
 
-.landingMainContainer>div:nth-child(1) div[role='button'] {
+.landingMainContainer > div:nth-child(1) div[role="button"] {
   background: #D97500;
   width: fit-content;
   padding: 1rem;
@@ -54,60 +58,172 @@
   margin-top: 1.9rem;
 }
 
-.landingMainContainer>div:nth-child(1) div[role='button'] a {
+.landingMainContainer > div:nth-child(1) div[role="button"] a {
   text-decoration: none;
   color: white;
   font-size: 1.7rem;
 }
 
-.landingMainContainer>div:nth-child(2) img {
+.landingMainContainer > div:nth-child(2) img {
   height: 70vh;
   width: auto;
 }
 
-.navBar {
+
+/* ================= Home Page ================= */
+
+.navbar {
+  min-height: 100vh;
+  background: #f8f9fc;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+
+/* Header */
+
+.navbar > div:first-child {
+  height: 70px;
+  padding: 0 30px;
+  background: #fff;
+  display: flex;
   justify-content: space-between;
-  padding-inline: 20px;
-  text-align: center;
-
-}
-.meetContainer {
-  display: flex;
-  padding-inline: 20px;
-  height: 80vh;
-  gap: 10vw;
-  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
 }
 
+.navbar h4{
+  font-size: 26px;
+  color:#1976d2;
+}
 
+/* Main Section */
 
+.meetContainer{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:40px 8%;
+  gap:50px;
+}
 
+.leftPanel{
+  flex:1;
+}
 
-.leftPanel {
-  height: 100%;
-  display: flex;
-  align-items: center;
+.leftPanel h2{
+  font-size:42px;
+  line-height:1.4;
+  margin-bottom:35px;
+  color:#222;
+}
+
+.leftPanel > div > div{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.leftPanel .MuiTextField-root{
+  width:280px;
+}
+
+.rightPanel{
+  flex:1;
+  display:flex;
+  justify-content:center;
+}
+
+.rightPanel img{
+  width:100%;
+  max-width:500px;
+  height:auto;
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width:768px){
+
+.navbar > div:first-child{
+  padding:15px;
+}
+
+.navbar h4{
+  font-size:20px;
+}
+
+.meetContainer{
+  flex-direction:column-reverse;
+  justify-content:center;
+  padding:25px 20px;
+  text-align:center;
+  gap:30px;
+}
+
+.leftPanel h2{
+  font-size:28px;
+  margin-bottom:25px;
+}
+
+.leftPanel > div > div{
+  flex-direction:column;
+  width:100%;
+}
+
+.leftPanel .MuiTextField-root{
+  width:100%;
+}
+
+.leftPanel button{
+  width:100%;
+}
+
+.rightPanel img{
+  width:80%;
+  max-width:320px;
+}
 
 }
 
+/* Mobile Responsive */
 
+@media (max-width: 768px) {
 
-.rightPanel {
-  display: flex;
-  align-items: center;
-}  
+  .landingPageContainer nav {
+    flex-direction: column;
+    gap: 15px;
+  }
 
-.rightPanel > img {
-  width: 30vw;
-  height: auto;
-  border-radius: 20px;
-} 
+  .navlist {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-.navBar{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: 20px;
-} 
+  .landingMainContainer {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    padding: 20px;
+    gap: 30px;
+  }
+
+  .landingMainContainer > div:nth-child(1) {
+    font-size: 1.4rem;
+  }
+
+  .landingMainContainer > div:nth-child(2) img {
+    width: 80%;
+    height: auto;
+  }
+
+  .meetContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .rightPanel > img {
+    width: 80%;
+  }
+}

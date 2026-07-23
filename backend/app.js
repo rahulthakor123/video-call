@@ -1,14 +1,16 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import dotenv from "dotenv";
+
 
 import { createServer } from "http";
 import { connectToSocket } from "./controller/SocketManager.js";
 
 import userRoutes from './routes/User.js'; 
-
-dotenv.config();
 
 const app = express();
 const server = createServer(app);
@@ -45,3 +47,5 @@ server.listen(PORT, async () => {
   console.log(`Server running on ${PORT}`);
   await connectDB();
 });
+
+

@@ -11,8 +11,8 @@ export const useAuth = () => useContext(AuthContext);
 
 // Create axios client
 const client = axios.create({
-  // baseURL: "http://localhost:8000",
-  baseURL:`${servers}`
+   baseURL: "http://localhost:8000",
+  // baseURL:`${servers}`
 });
 
 const AuthProvider = ({ children }) => {
@@ -37,9 +37,14 @@ const AuthProvider = ({ children }) => {
   const handleLogin = async (userData) => {
     try {
       const response = await client.post('/login', userData);
-      setUsername(response.data.username);
+
+    // Save token for future API calls
+    localStorage.setItem("Token", response.data.Token);
+     
       setPassword("");
-      setUsername("");
+     
+
+      return response.data;
       
     } catch (err) {
       console.error("Login error:", err);
@@ -62,26 +67,74 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    const addToUserHistory = async (Meetingcode) => {
-        try {
-            let request = await client.post("/add_to_activity", {
-                Token: localStorage.getItem("Token"),
-                Meetingcode:Meetingcode,
-            });
-            return request
-        } catch (e) {
-            throw e;
-        }
+const addToUserHistory = async (Meetingcode) => {
+    try {
+
+        console.log("Sending:", {
+            Token: localStorage.getItem("Token"),
+            Meetingcode
+        });
+
+        let request = await client.post("/add_to_activity", {
+            Token: localStorage.getItem("Token"),
+            Meetingcode
+        });
+
+        console.log("Response:", request.data);
+
+        return request;
+
+    } catch (e) {
+        console.error(e);
+        throw e;
     }
+}
+
+       const createMeeting = async () => {
+
+    const response =
+    await client.post("/create_meeting");
+
+    return response.data.meetingCode;
+   }
+
+   const forgotPassword = async (email) => {
+    return await client.post("/forgot_password", {
+        email
+    });
+};
+
+const verifyResetOTP = async (email, otp) => {
+    return await client.post("/verify_reset_otp", {
+        email,
+        otp
+    });
+};
+
+const resetPassword = async (email, password) => {
+    return await client.post("/reset_password", {
+        email,
+        password
+    });
+};
 
 
   const value = {
     username,setUsername,
     name,setName,
     password,setPassword,
-    handleLogin,handleRegister,
-    addToUserHistory,getHistoryOfUser,
+    handleLogin,
+    handleRegister,
+    addToUserHistory,
+    getHistoryOfUser,
+    createMeeting,
+    forgotPassword,
+    verifyResetOTP,
+   resetPassword,
+
   };
+
+  
 
   return (
     <AuthContext.Provider value={value}>
