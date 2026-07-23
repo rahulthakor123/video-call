@@ -24,6 +24,12 @@ app.use(express.json());
 app.use(express.json({limit:"40kb"}));
 app.use(express.urlencoded({limit:"40kb"}));
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Quick Meet Backend is running successfully",
+  });
+});
 app.use('/', userRoutes);  
 
 
