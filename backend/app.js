@@ -40,7 +40,10 @@ app.get("/home", (req, res) => {
 // MongoDB connection
 const connectDB = async () => {
   try {
+    console.log("Mongo URI exists:", !!process.env.MONGO_DB_URI);
+
     await mongoose.connect(process.env.MONGO_DB_URI);
+
     console.log("MongoDB connected");
   } catch (err) {
     console.error("MongoDB connection failed:", err);
